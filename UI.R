@@ -2,7 +2,7 @@ library(shiny)
 library(shinydashboard)
 shinyUI(
   dashboardPage( title = "examsapp",skin = "blue",
-  dashboardHeader(title = "Exams processing app:",titleWidth = 300),
+  dashboardHeader(title = "Exams App:",titleWidth = 300),
   dashboardSidebar(width = 300,
     sidebarMenu(
       fileInput("data_file","Upload the file:"),
