@@ -4,7 +4,7 @@ library(ggplot2)
 shinyServer(function(input,output,session){
   myData <- reactive({
       file_to_read <-  input$data_file
-      if(is.null(file_to_read)) return()
+      if(is.null(file_to_read)) stop("Please select a file to view")
      data <-  read.csv(file_to_read$datapath,header=TRUE,sep = ",")
      data
   })
@@ -17,19 +17,23 @@ shinyServer(function(input,output,session){
   })
   
   output$barchart <- renderPlot({
-    ggplot(data = myData())+geom_bar(mapping=aes(myData()[,input$subject]) )
+    ggplot(data = myData()) + 
+      geom_bar(mapping=aes(myData()[,input$subject]) )
   })
   
   output$histogram <- renderPlot({
-    ggplot(data = myData())+geom_histogram(mapping = aes(myData()[,input$subject]),bins = input$bins)
+    ggplot(data = myData()) + 
+      geom_histogram(mapping = aes(myData()[,input$subject]),bins = input$bins)
   })
   
   output$boxplot <- renderPlot({
-    ggplot(data = myData())+geom_boxplot(mapping = aes(x="",y=myData()[,input$subject]))
+    ggplot(data = myData()) + 
+      geom_boxplot(mapping = aes(x="",y=myData()[,input$subject]))
   })
   
   output$scatterplot <- renderPlot({
-    ggplot(data = myData())+geom_point(mapping = aes(y="",x=myData()[,input$subject]))
+    ggplot(data = myData()) + 
+      geom_point(mapping = aes(y="",x=myData()[,input$subject]))
   })
   
   output$raw_data <- downloadHandler(
