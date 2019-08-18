@@ -12,11 +12,11 @@ shinyUI(
     dashboardBody(
       tabsetPanel(
         type = "tab",
-        tabPanel("Raw Data",downloadButton("raw_data", "Download Raw Data"),
-               tableOutput("data_file")
+        tabPanel("Raw Data", 
+                 downloadButton("raw_data", "Download Raw Data")
                  ),
-        tabPanel("Tabulated Data", downloadButton("tabulated_data", "Download Tabulated Data")
-                 
+        tabPanel("Tabulated Data", 
+                 downloadButton("tabulated_data", "Download Tabulated Data")
                  ),
         tabPanel("Summaries",
                  verbatimTextOutput("summary")
@@ -29,7 +29,7 @@ shinyUI(
                               sliderInput("bins","Number of breaks:", 1, 100, 50)),
                      tabPanel("Boxplot", plotOutput("boxplot")),
                      #tabPanel("Scatter plot", plotOutput("scatterplot")),
-                     downloadButton("plot", "Download Plot")
+                     downloadButton(plot, "Download Plot")
                    )
                    )
                  )
